@@ -6,7 +6,10 @@ build-backend = "hatchling.build"
 name = "Sagittal_Average"
 version = "0.1.0"
 
+[project.scripts]
+sagittal_average_run = "sagittal_average.command:process"
+
 [tool.hatch.build.targets.wheel]
 packages = [
-  "src/sag_brain_avg",
+  "src/sagittal_average",
 ]
