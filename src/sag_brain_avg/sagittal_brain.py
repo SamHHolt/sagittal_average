@@ -1,6 +1,7 @@
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 import numpy as np
+from pathlib import Path
 
 
 def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv'):
@@ -11,15 +12,19 @@ def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv')
 
     The result is the average for each sagittal/horizontal plane (rows)
     """
+    script_dir = Path(__file__).resolve().parent       # src/sag_brain_avg
+    project_root = script_dir.parents[1]               # adjust number to reach repo root
+    input_file = project_root / "docs" / file_input
+    output_file = project_root / "docs" / file_output
     # Open the file to analyse
-    planes = np.loadtxt(file_input, dtype=int,  delimiter=',')
+    planes = np.loadtxt(input_file, dtype=int,  delimiter=',')
 
     # Calculates the averages through the sagittal/horizontal planes
     # and makes it as a row vector
-    averages = planes.mean(axis=0)[np.newaxis, :]
+    averages = planes.mean(axis=1)[np.newaxis, :]
 
     # write it out on my file
-    np.savetxt(file_output, averages, fmt='%.1f', delimiter=',')
+    np.savetxt(output_file, averages, fmt='%.1f', delimiter=',')
 
 
 if __name__ == "__main__":
