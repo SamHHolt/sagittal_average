@@ -12,7 +12,7 @@ def run_averages(file_input='brain_sample.csv', file_output='brain_average.csv')
 
     The result is the average for each sagittal/horizontal plane (rows)
     """
-    script_dir = Path(__file__).resolve().parent       # src/sag_brain_avg
+    script_dir = Path(__file__).resolve().parent       # src/sagittal_average
     project_root = script_dir.parents[1]               # adjust number to reach repo root
     input_file = project_root / "docs" / file_input
     output_file = project_root / "docs" / file_output
